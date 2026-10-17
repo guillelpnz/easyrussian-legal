@@ -28,6 +28,7 @@
     h1 { margin: 10px 0 12px; font-size: clamp(34px, 9vw, 46px); line-height: 1.05; letter-spacing: -.035em; }
     p { margin: 0 auto 28px; color: #94a3b8; font-size: 18px; line-height: 1.55; max-width: 360px; }
     a { display: block; text-decoration: none; }
+    [hidden] { display: none !important; }
     .primary {
       padding: 17px 22px; border-radius: 17px; background: #0ea5e9; color: white;
       font-weight: 800; font-size: 17px; box-shadow: 0 12px 30px rgba(14,165,233,.24);
@@ -49,10 +50,11 @@
     <h1>Learn together.</h1>
     <p>A friend invited you to their study circle. Share your streak, celebrate study days and keep each other moving.</p>
     <div id="invalid" class="invalid">This invitation is incomplete. Ask your friend to share it again.</div>
-    <a id="open" class="primary" href="#">Open Easy Russian</a>
-    <a class="secondary" href="https://apps.apple.com/app/id6780432083">Get the app on the App Store</a>
+    <a id="open" class="primary" href="#" hidden>Open Easy Russian</a>
+    <a class="secondary" href="https://apps.apple.com/app/id6780432083">Download on the App Store</a>
+    <p style="font-size:14px;margin-top:18px">Don’t have the app yet? Download it above, then return to this link. Available for iPhone.</p>
     <section id="backup" hidden style="margin-top:28px">
-      <p style="margin-bottom:8px">Installing first? Save this invite code, then choose “I have an invite” in Friends.</p>
+      <p style="margin-bottom:8px">Installing first? Download the app, then return to this invitation and tap “Open Easy Russian”. You can also save this code and enter it in Friends → I have an invite.</p>
       <strong id="code" style="font-size:32px;letter-spacing:.12em"></strong>
       <button id="copy" style="display:block;margin:16px auto;padding:14px 22px;border-radius:14px;font-size:17px">Copy code</button>
       <p id="copy-status" role="status"></p>
@@ -68,6 +70,7 @@
       const scheme = variant === 'preview' ? 'easy-russian-preview' : variant === 'development' ? 'easy-russian-dev' : 'easy-russian';
       const appUrl = `${scheme}://friends?code=${encodeURIComponent(code)}`;
       open.href = appUrl;
+      open.hidden = false;
       document.getElementById('backup').hidden = false;
       document.getElementById('code').textContent = code;
       document.getElementById('copy').onclick = async () => {
